@@ -34,6 +34,14 @@ This mobile version was created with permission and encouragement from the origi
 |------|------|
 | 0.5.2 | First public mobile build |
 | 0.8.1 | Emotion sticker system + theme switcher |
+| 0.8.2 | Major changes in this version:
+
+- Project-owned asset system
+- Removed dependency on original repository assets
+- Improved avatar resource structure
+- Improved sticker system structure
+- Prepared architecture for future versions |
+
 
 ---
 
