@@ -1,6 +1,6 @@
 # HSRGUI Mobile
 
-![version](https://img.shields.io/badge/version-0.8.1-blue)
+![version](https://img.shields.io/badge/version-0.8.2-blue)
 ![platform](https://img.shields.io/badge/platform-Android-green)
 ![userscript](https://img.shields.io/badge/userscript-Tampermonkey-orange)
 ![status](https://img.shields.io/badge/status-experimental-purple)
