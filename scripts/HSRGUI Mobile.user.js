@@ -2,10 +2,14 @@
 // @name         HSRGUI Mobile
 // @namespace    hsrgui.mobile
 // @version      0.8.1
-// @description  HSRGUI Mobile adaptation
+// @description  HSR themed UI for ChatGPT mobile
 // @match        https://chatgpt.com/*
+// @grant        GM_addStyle
+
+// Auto update
 // @updateURL    https://raw.githubusercontent.com/Code-Machine-minsukim/HSRGUI-Mobile/main/scripts/HSRGUI_Mobile.user.js
 // @downloadURL  https://raw.githubusercontent.com/Code-Machine-minsukim/HSRGUI-Mobile/main/scripts/HSRGUI_Mobile.user.js
+
 // ==/UserScript==
 
 (function () {
