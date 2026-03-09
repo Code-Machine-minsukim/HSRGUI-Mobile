@@ -1,25 +1,38 @@
 # HSRGUI Mobile
 
+![version](https://img.shields.io/badge/version-0.8.1-blue)
+![platform](https://img.shields.io/badge/platform-Android-green)
+![userscript](https://img.shields.io/badge/userscript-Tampermonkey-orange)
+![status](https://img.shields.io/badge/status-experimental-purple)
+
 Mobile adaptation of the original **HSRGUI ChatGPT interface**.
 
-This project converts the desktop focused HSRGUI UI into a **mobile friendly version** that works with browsers and userscript managers such as Tampermonkey.
+This project reworks HSRGUI into a **mobile friendly userscript version** for browsers such as Edge Canary and Kiwi Browser.
 
-Original HSRGUI project:
+Original project:
 https://github.com/engineer-502/HSRGUI
 
 This mobile version was created with permission and encouragement from the original developer.
 
 ---
 
+## Install
+
+🧩 **Tampermonkey required**
+
+[Install HSRGUI Mobile](https://raw.githubusercontent.com/USERNAME/HSRGUI-Mobile/main/scripts/HSRGUI_Mobile.user.js)
+
+---
+
 ## Features
 
-• Honkai Star Rail themed ChatGPT interface  
-• Mobile optimized chat layout  
-• Character avatars  
-• Emotion based sticker system  
-• Animated sticker display  
-• Theme switching (Express / Midnight / Silver)  
-• Chat bubble styling  
+- Honkai Star Rail style ChatGPT interface
+- Mobile optimized layout
+- Character avatars
+- Emotion based sticker system
+- Sticker animation
+- Theme switching
+- Chat bubble styling
 
 ---
 
@@ -30,9 +43,21 @@ This mobile version was created with permission and encouragement from the origi
 | 0.5.2 | First public mobile build |
 | 0.8.1 | Emotion sticker system + theme switcher |
 
-This project is currently **experimental**.
+---
 
-Version **1.0** will focus on stability and customization.
+## Roadmap
+
+### 0.9
+- Settings panel
+- Character selection
+- Sticker ON/OFF
+- Theme memory save
+
+### 1.0
+- Stable release
+- Full customization panel
+- Improved compatibility
+- Cleaner install flow
 
 ---
 
@@ -49,8 +74,6 @@ Community modification
 ## License
 
 This project follows the spirit and license of the original HSRGUI project.
-
-All base concepts and UI inspiration belong to the original author.
 
 이 프로젝트는 팬메이드 비공식 UI 테마 확장 프로그램입니다.
 Honkai: Star Rail, HoYoverse 및 관련 명칭/로고/콘텐츠의 권리는 각 권리자에게 있습니다.
