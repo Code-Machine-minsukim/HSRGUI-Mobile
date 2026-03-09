@@ -15,13 +15,7 @@ Userscript Manager
 ---
 ## Step 1 — Install Tampermonkey
 
-Install Tampermonkey extension.
-
-## Install
-
-**Tampermonkey**
-
-[Install Script](https://raw.githubusercontent.com/USERNAME/HSRGUI-Mobile/main/scripts/HSRGUI_Mobile.user.js)
+Install Tampermonkey extension
 
 ---
 
@@ -94,8 +88,6 @@ Tampermonkey 확장 프로그램을 설치합니다.
 
 엣지 카나리에 들어가면 오른쪽 아래 버튼을 누르면 확장프로그램이 보입니다. 들어가서 Tampermonkey 검색후 다운해주세요.
 
-(영문버전에 원버튼 설치를 적어놓았습니다만 정상작동할지는 모릅니다. 아직 테스트 안해봄....)
-
 ## 2단계 — 스크립트 설치
 
 방법1.
@@ -136,5 +128,6 @@ SILVER
 
 이 UI는 실험적인 버전입니다.
 일부 브라우저 업데이트 또는 ChatGPT UI 업데이트로 인해 일시적으로 호환성이 깨질 수 있습니다.Some browser updates or ChatGPT UI updates may temporarily break compatibility.
+
 
 
