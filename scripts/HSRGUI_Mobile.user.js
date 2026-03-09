@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         HSRGUI Mobile 0.8.1
+// @name         HSRGUI_Mobile.user
 // @namespace    hsrgui.mobile
 // @version      0.8.1
 // @description  HSR themed UI for ChatGPT mobile stable 0.8.1
