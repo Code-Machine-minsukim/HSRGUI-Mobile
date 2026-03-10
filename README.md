@@ -1,13 +1,21 @@
 # HSRGUI Mobile
 
-![version](https://img.shields.io/badge/version-0.8.3-blue)
-![platform](https://img.shields.io/badge/platform-Android-green)
+![version](https://img.shields.io/badge/latest-0.8.3-blue)
+![platform](https://img.shields.io/badge/platform-mobile-green)
 ![userscript](https://img.shields.io/badge/userscript-Tampermonkey-orange)
-![status](https://img.shields.io/badge/status-experimental-purple)
 
-Mobile adaptation of the original **HSRGUI ChatGPT interface**.
+Mobile adaptation of **HSRGUI** for ChatGPT.
 
-This project reworks HSRGUI into a **mobile friendly userscript version** for browsers such as Edge Canary and Kiwi Browser.
+## Latest Version
+
+**Current latest version: `0.8.3`**
+
+Stable public release for the current asset system and mobile UI build.
+
+Mobile adaptation of the original 
+**HSRGUI ChatGPT interface**.
+
+This project reworks HSRGUI into a **mobile friendly userscript version** for browsers such as Edge Canary.
 
 Original project:
 https://github.com/engineer-502/HSRGUI
