@@ -23,6 +23,13 @@ https://github.com/engineer-502/HSRGUI
 This mobile version was created with permission and encouragement from the original developer.
 
 ---
+## Beta Testing
+
+HSRGUI Mobile is currently in **beta testing (v0.8.3)**.
+
+Feedback and bug reports are welcome.
+Please open an issue on GitHub.
+---
 
 ## Features
 
