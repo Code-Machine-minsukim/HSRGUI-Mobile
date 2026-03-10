@@ -72,7 +72,7 @@ Create a new script and paste the code from:
 
 
 
-scripts/HSRGUI_Mobile_0.8.1.user.js
+scripts/HSRGUI_Mobile.user.js
 
 
 
@@ -190,7 +190,7 @@ Tampermonkey 대시보드를 엽니다.
 
 도구 탭으로 이동후, 가져오기 클릭하기
 
-HSRGUI_Mobile_0.8.1.user.js
+HSRGUI_Mobile.user.js
 
 이후 설치 버튼 누르면 됩니다
 
