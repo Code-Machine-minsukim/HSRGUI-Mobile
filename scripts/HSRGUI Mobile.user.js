@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HSRGUI Mobile
 // @namespace    hsrgui.mobile
-// @version      0.9.2
+// @version      0.9.3
 // @description  HSR themed UI for ChatGPT mobile
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
@@ -12,7 +12,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "hsrgui_mobile_config_v092";
+  const STORAGE_KEY = "hsrgui_mobile_config_v093";
 
   const DEFAULT_CONFIG = {
     headerTitle: "오공열차",
@@ -30,85 +30,68 @@
 
   const THEMES = {
     express: {
-      bg: "#cfd8ff",
-      panel: "rgba(250,250,255,0.88)",
-      panelBorder: "rgba(119,130,200,0.10)",
-      headerTitle: "#36417a",
-      headerSub: "rgba(54,65,122,0.65)",
-      chipBg: "rgba(255,255,255,0.80)",
-      chipText: "#36417a",
-      userBubble: "#e6d5ff",
-      userBubbleText: "#2f3055",
+      bg: "#d7deea",
+      panel: "rgba(248,250,255,0.90)",
+      panelBorder: "rgba(120,130,160,0.10)",
+      headerTitle: "#394257",
+      headerSub: "rgba(57,66,87,0.62)",
+      chipBg: "rgba(255,255,255,0.84)",
+      chipText: "#394257",
+      userBubble: "#d9c9a2",
+      userBubbleText: "#2c2d35",
+      assistantBubble: "#f7f7fb",
+      assistantBubbleText: "#232734",
+      shadow: "0 8px 18px rgba(90,100,120,0.10)",
+      settingsBg: "rgba(252,253,255,0.98)",
+      settingsText: "#394257",
+      settingsBorder: "rgba(120,130,160,0.12)",
+      inputBg: "rgba(255,255,255,0.98)",
+      accent: "#7d8fb5",
+      accentSoft: "rgba(125,143,181,0.22)"
+    },
+
+    march7: {
+      bg: "#d8e4ff",
+      panel: "rgba(250,252,255,0.92)",
+      panelBorder: "rgba(120,140,220,0.10)",
+      headerTitle: "#44508d",
+      headerSub: "rgba(68,80,141,0.65)",
+      chipBg: "rgba(255,255,255,0.84)",
+      chipText: "#44508d",
+      userBubble: "#e7dbff",
+      userBubbleText: "#2f3566",
       assistantBubble: "#ffffff",
-      assistantBubbleText: "#20243f",
-      shadow: "0 6px 18px rgba(90,110,180,0.12)",
-      settingsBg: "rgba(252,252,255,0.97)",
-      settingsText: "#303b72",
-      settingsBorder: "rgba(119,130,200,0.14)",
+      assistantBubbleText: "#20264a",
+      shadow: "0 8px 18px rgba(100,120,200,0.12)",
+      settingsBg: "rgba(252,253,255,0.98)",
+      settingsText: "#44508d",
+      settingsBorder: "rgba(120,140,220,0.14)",
       inputBg: "rgba(255,255,255,0.98)",
-      accent: "#ffb6d9",
-      accentSoft: "rgba(255,182,217,0.18)"
+      accent: "#ffb8dc",
+      accentSoft: "rgba(255,184,220,0.22)"
     },
-    midnight: {
-      bg: "#1f2430",
-      panel: "rgba(32,38,48,0.90)",
-      panelBorder: "rgba(255,255,255,0.06)",
-      headerTitle: "#edf2ff",
-      headerSub: "rgba(237,242,255,0.66)",
-      chipBg: "rgba(255,255,255,0.10)",
-      chipText: "#edf2ff",
-      userBubble: "#45506b",
-      userBubbleText: "#ffffff",
-      assistantBubble: "#2c3340",
-      assistantBubbleText: "#f2f5ff",
-      shadow: "0 8px 20px rgba(0,0,0,0.26)",
-      settingsBg: "rgba(28,33,42,0.98)",
-      settingsText: "#edf2ff",
-      settingsBorder: "rgba(255,255,255,0.09)",
-      inputBg: "rgba(36,42,54,0.96)",
-      accent: "#88a1ff",
-      accentSoft: "rgba(136,161,255,0.18)"
-    },
-    silver: {
-      bg: "#dce3ea",
-      panel: "rgba(252,253,255,0.90)",
-      panelBorder: "rgba(50,60,80,0.06)",
-      headerTitle: "#2d3440",
-      headerSub: "rgba(45,52,64,0.58)",
-      chipBg: "rgba(255,255,255,0.82)",
-      chipText: "#2d3440",
-      userBubble: "#d7dce8",
-      userBubbleText: "#1d2532",
-      assistantBubble: "#f8f9fc",
-      assistantBubbleText: "#1d2532",
-      shadow: "0 6px 16px rgba(80,90,110,0.10)",
-      settingsBg: "rgba(254,254,255,0.98)",
-      settingsText: "#2d3440",
-      settingsBorder: "rgba(50,60,80,0.08)",
-      inputBg: "rgba(255,255,255,0.98)",
-      accent: "#92a3b7",
-      accentSoft: "rgba(146,163,183,0.18)"
-    },
+
     acheron: {
-      bg: "#1a1623",
-      panel: "rgba(35,28,48,0.92)",
-      panelBorder: "rgba(255,255,255,0.06)",
-      headerTitle: "#efe7ff",
-      headerSub: "rgba(239,231,255,0.68)",
-      chipBg: "rgba(255,255,255,0.09)",
-      chipText: "#efe7ff",
-      userBubble: "#4d3a6d",
+      bg: "#2a2338",
+      panel: "rgba(48,39,66,0.92)",
+      panelBorder: "rgba(190,160,255,0.10)",
+      headerTitle: "#f1ebff",
+      headerSub: "rgba(241,235,255,0.72)",
+      chipBg: "rgba(255,255,255,0.12)",
+      chipText: "#f1ebff",
+      userBubble: "#624a86",
       userBubbleText: "#ffffff",
-      assistantBubble: "#2a2338",
-      assistantBubbleText: "#f6f2ff",
-      shadow: "0 10px 24px rgba(0,0,0,0.30)",
-      settingsBg: "rgba(26,22,35,0.98)",
-      settingsText: "#efe7ff",
-      settingsBorder: "rgba(165,109,255,0.18)",
-      inputBg: "rgba(39,31,52,0.96)",
-      accent: "#a56dff",
-      accentSoft: "rgba(165,109,255,0.22)"
+      assistantBubble: "#3a2f4f",
+      assistantBubbleText: "#f7f3ff",
+      shadow: "0 10px 24px rgba(0,0,0,0.24)",
+      settingsBg: "rgba(40,33,55,0.98)",
+      settingsText: "#f1ebff",
+      settingsBorder: "rgba(165,109,255,0.20)",
+      inputBg: "rgba(57,47,77,0.96)",
+      accent: "#b088ff",
+      accentSoft: "rgba(176,136,255,0.24)"
     },
+
     asta: {
       bg: "#f7d3b3",
       panel: "rgba(255,244,232,0.92)",
@@ -129,6 +112,7 @@
       accent: "#ff9a3c",
       accentSoft: "rgba(255,154,60,0.20)"
     },
+
     castorice: {
       bg: "#dadcf6",
       panel: "rgba(248,248,255,0.92)",
@@ -155,7 +139,7 @@
     march7: {
       assistantName: "March.7th",
       assistantAvatarKey: "march7",
-      theme: "express"
+      theme: "march7"
     },
     acheron: {
       assistantName: "Acheron",
@@ -175,13 +159,17 @@
     custom: null
   };
 
+  function cloneDefaultConfig() {
+    return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+  }
+
   function loadConfig() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return { ...DEFAULT_CONFIG };
-      return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
+      if (!raw) return cloneDefaultConfig();
+      return { ...cloneDefaultConfig(), ...JSON.parse(raw) };
     } catch {
-      return { ...DEFAULT_CONFIG };
+      return cloneDefaultConfig();
     }
   }
 
@@ -194,7 +182,7 @@
   const CONFIG = loadConfig();
 
   function resetConfig() {
-    Object.assign(CONFIG, structuredClone(DEFAULT_CONFIG));
+    Object.assign(CONFIG, cloneDefaultConfig());
     saveConfig();
     applyCss();
     refreshHeader();
@@ -224,7 +212,7 @@
 
   const CDN_JSDELIVR = "https://cdn.jsdelivr.net/gh/Code-Machine-minsukim/HSRGUI-Mobile@main/assets";
   const CDN_RAW = "https://raw.githubusercontent.com/Code-Machine-minsukim/HSRGUI-Mobile/main/assets";
-  const ASSET_VERSION = "092";
+  const ASSET_VERSION = "093";
 
   function assetUrl(path, useRaw = false) {
     const base = useRaw ? CDN_RAW : CDN_JSDELIVR;
@@ -386,7 +374,7 @@
         display: ${CONFIG.showHeaderBadge ? "flex" : "none"};
         align-items: center;
         gap: 8px;
-        padding: 7px 12px;
+        padding: 6px 10px;
         border-radius: 999px;
         background: rgba(255,255,255,0.60);
         border: 1px solid ${theme.settingsBorder};
@@ -807,8 +795,7 @@
 
     buildOptionGroup("hsr-theme-options", [
       ["express", "Express"],
-      ["midnight", "Midnight"],
-      ["silver", "Silver"],
+      ["march7", "March.7th"],
       ["acheron", "Acheron"],
       ["asta", "Asta"],
       ["castorice", "Castorice"]
