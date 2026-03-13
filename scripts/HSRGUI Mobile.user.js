@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         HSRGUI Mobile
 // @namespace    hsrgui.mobile
-// @version      0.9.0
+// @version      0.9.1
 // @description  HSR themed UI for ChatGPT mobile
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
@@ -12,7 +12,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "hsrgui_mobile_config_v090";
+  const STORAGE_KEY = "hsrgui_mobile_config_v091";
 
   const DEFAULT_CONFIG = {
     headerTitle: "오공열차",
@@ -24,7 +24,8 @@
     theme: "express",
     showHeaderBadge: true,
     stickerMode: "emotion", // emotion | random | on | off
-    characterThemeMode: "march7" // march7 | acheron | asta | castorice | custom
+    characterThemeMode: "march7", // march7 | acheron | asta | castorice | custom
+    layoutMode: "default" // default | compact
   };
 
   const THEMES = {
@@ -43,7 +44,8 @@
       shadow: "0 4px 12px rgba(0,0,0,0.08)",
       settingsBg: "rgba(255,255,255,0.96)",
       settingsText: "#111111",
-      settingsBorder: "rgba(0,0,0,0.08)"
+      settingsBorder: "rgba(0,0,0,0.08)",
+      inputBg: "rgba(255,255,255,0.95)"
     },
     midnight: {
       bg: "#20262d",
@@ -60,7 +62,8 @@
       shadow: "0 4px 14px rgba(0,0,0,0.24)",
       settingsBg: "rgba(29,34,42,0.98)",
       settingsText: "#f3f5f7",
-      settingsBorder: "rgba(255,255,255,0.08)"
+      settingsBorder: "rgba(255,255,255,0.08)",
+      inputBg: "rgba(29,34,42,0.96)"
     },
     silver: {
       bg: "#d8dde3",
@@ -77,7 +80,8 @@
       shadow: "0 4px 12px rgba(0,0,0,0.07)",
       settingsBg: "rgba(252,252,253,0.98)",
       settingsText: "#20242a",
-      settingsBorder: "rgba(0,0,0,0.08)"
+      settingsBorder: "rgba(0,0,0,0.08)",
+      inputBg: "rgba(255,255,255,0.96)"
     },
     acheron: {
       bg: "#2a2233",
@@ -94,7 +98,8 @@
       shadow: "0 4px 16px rgba(0,0,0,0.28)",
       settingsBg: "rgba(30,25,38,0.98)",
       settingsText: "#efe7ff",
-      settingsBorder: "rgba(255,255,255,0.08)"
+      settingsBorder: "rgba(255,255,255,0.08)",
+      inputBg: "rgba(30,25,38,0.96)"
     },
     asta: {
       bg: "#f1d7c6",
@@ -111,7 +116,8 @@
       shadow: "0 4px 12px rgba(120,70,40,0.12)",
       settingsBg: "rgba(255,250,246,0.98)",
       settingsText: "#5f3113",
-      settingsBorder: "rgba(120,70,40,0.10)"
+      settingsBorder: "rgba(120,70,40,0.10)",
+      inputBg: "rgba(255,252,248,0.96)"
     },
     castorice: {
       bg: "#d7d9ee",
@@ -128,7 +134,8 @@
       shadow: "0 4px 12px rgba(60,70,120,0.10)",
       settingsBg: "rgba(250,250,255,0.98)",
       settingsText: "#3d4478",
-      settingsBorder: "rgba(60,70,120,0.10)"
+      settingsBorder: "rgba(60,70,120,0.10)",
+      inputBg: "rgba(252,252,255,0.96)"
     }
   };
 
@@ -189,15 +196,14 @@
     saveConfig();
   }
 
-  if (!CONFIG.characterThemeMode) {
-    CONFIG.characterThemeMode = "march7";
-  }
+  if (!CONFIG.characterThemeMode) CONFIG.characterThemeMode = "march7";
+  if (!CONFIG.layoutMode) CONFIG.layoutMode = "default";
 
   let theme = THEMES[CONFIG.theme] || THEMES.express;
 
   const CDN_JSDELIVR = "https://cdn.jsdelivr.net/gh/Code-Machine-minsukim/HSRGUI-Mobile@main/assets";
   const CDN_RAW = "https://raw.githubusercontent.com/Code-Machine-minsukim/HSRGUI-Mobile/main/assets";
-  const ASSET_VERSION = "090";
+  const ASSET_VERSION = "091";
 
   function assetUrl(path, useRaw = false) {
     const base = useRaw ? CDN_RAW : CDN_JSDELIVR;
@@ -285,8 +291,22 @@
     return arr[seed % arr.length];
   }
 
+  function isCompact() {
+    return CONFIG.layoutMode === "compact";
+  }
+
   function buildCss() {
     theme = THEMES[CONFIG.theme] || THEMES.express;
+
+    const headerPad = isCompact() ? "10px 14px 8px 14px" : "14px 18px 10px 18px";
+    const titleSize = isCompact() ? "18px" : "20px";
+    const subtitleSize = isCompact() ? "11px" : "12px";
+    const labelFont = isCompact() ? "13px" : "14px";
+    const avatarSize = isCompact() ? "34px" : "42px";
+    const bubblePad = isCompact() ? "11px 13px" : "14px 16px";
+    const stickerWidth = isCompact() ? "82px" : "110px";
+    const turnGap = isCompact() ? "2px" : "4px";
+    const settingsTop = isCompact() ? "56px" : "64px";
 
     return `
       body {
@@ -305,7 +325,7 @@
         background: ${theme.panel};
         backdrop-filter: blur(12px);
         border-bottom: 1px solid ${theme.panelBorder};
-        padding: 14px 18px 10px 18px;
+        padding: ${headerPad};
         box-shadow: ${theme.shadow};
         display: flex;
         justify-content: space-between;
@@ -319,7 +339,7 @@
 
       #hsr-title {
         font-weight: 800;
-        font-size: 20px;
+        font-size: ${titleSize};
         color: ${theme.headerTitle};
         line-height: 1.1;
         letter-spacing: -0.02em;
@@ -327,7 +347,7 @@
 
       #hsr-subtitle {
         margin-top: 4px;
-        font-size: 12px;
+        font-size: ${subtitleSize};
         color: ${theme.headerSub};
         line-height: 1.2;
       }
@@ -379,9 +399,11 @@
 
       #hsr-settings-panel {
         position: fixed;
-        top: 64px;
+        top: ${settingsTop};
         right: 12px;
-        width: min(320px, calc(100vw - 24px));
+        width: min(340px, calc(100vw - 24px));
+        max-height: 70vh;
+        overflow-y: auto;
         background: ${theme.settingsBg};
         color: ${theme.settingsText};
         border: 1px solid ${theme.settingsBorder};
@@ -435,6 +457,30 @@
         outline: 2px solid rgba(0,0,0,0.18);
       }
 
+      .hsr-settings-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .hsr-settings-input {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid ${theme.settingsBorder};
+        background: ${theme.inputBg};
+        color: ${theme.settingsText};
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        outline: none;
+      }
+
+      .hsr-settings-hint {
+        font-size: 11px;
+        opacity: 0.65;
+        margin-top: 2px;
+      }
+
       main article,
       main [data-message-author-role],
       main .markdown,
@@ -454,6 +500,7 @@
         width: 100% !important;
         box-sizing: border-box !important;
         animation: hsrFadeIn .25s ease;
+        gap: ${turnGap};
       }
 
       .hsr-turn-wrap[data-message-author-role="assistant"] {
@@ -477,13 +524,13 @@
         gap: 10px !important;
         margin: 4px 0 8px 0 !important;
         font-weight: 800 !important;
-        font-size: 14px !important;
+        font-size: ${labelFont} !important;
         color: ${theme.headerTitle};
       }
 
       .hsr-avatar-label img {
-        width: 42px;
-        height: 42px;
+        width: ${avatarSize};
+        height: ${avatarSize};
         border-radius: 50%;
         object-fit: cover;
         box-shadow: 0 2px 6px rgba(0,0,0,0.18);
@@ -501,7 +548,7 @@
 
       .hsr-bubble {
         border-radius: 18px !important;
-        padding: 14px 16px !important;
+        padding: ${bubblePad} !important;
         box-shadow: 0 4px 10px rgba(0,0,0,0.10);
         overflow: visible !important;
         word-break: break-word !important;
@@ -522,7 +569,7 @@
       }
 
       .hsr-sticker {
-        width: 110px;
+        width: ${stickerWidth};
         height: auto;
         display: block;
         margin-top: 10px;
@@ -555,16 +602,14 @@
       }
 
       @media (max-width: 900px) {
-        #hsr-header { padding: 12px 16px 9px 16px; }
-        #hsr-title { font-size: 18px; }
+        #hsr-header { padding: ${isCompact() ? "9px 12px 7px 12px" : "12px 16px 9px 16px"}; }
+        #hsr-title { font-size: ${isCompact() ? "17px" : "18px"}; }
         #hsr-subtitle { font-size: 11px; }
         #hsr-badge { padding: 5px 9px; }
         #hsr-badge img { width: 24px; height: 24px; }
         #hsr-badge-text { font-size: 11px; }
         #hsr-settings-btn { padding: 6px 10px; font-size: 13px; }
-        #hsr-settings-panel { top: 58px; right: 8px; width: min(300px, calc(100vw - 16px)); }
-        .hsr-avatar-label img { width: 38px; height: 38px; }
-        .hsr-sticker { width: 96px; }
+        #hsr-settings-panel { top: ${isCompact() ? "52px" : "58px"}; right: 8px; width: min(320px, calc(100vw - 16px)); }
       }
     `;
   }
@@ -669,7 +714,27 @@
 
       <div class="hsr-settings-group">
         <div class="hsr-settings-label">Assistant Avatar</div>
-        <div class="hsr-settings-options" id="hsr-avatar-options"></div>
+        <div class="hsr-settings-options" id="hsr-assistant-avatar-options"></div>
+      </div>
+
+      <div class="hsr-settings-group">
+        <div class="hsr-settings-label">User Avatar</div>
+        <div class="hsr-settings-options" id="hsr-user-avatar-options"></div>
+      </div>
+
+      <div class="hsr-settings-group">
+        <div class="hsr-settings-label">Layout Mode</div>
+        <div class="hsr-settings-options" id="hsr-layout-options"></div>
+      </div>
+
+      <div class="hsr-settings-group">
+        <div class="hsr-settings-label">Chat Settings</div>
+        <div class="hsr-settings-inputs">
+          <input id="hsr-room-title" class="hsr-settings-input" type="text" maxlength="40" placeholder="Room Title">
+          <input id="hsr-room-subtitle" class="hsr-settings-input" type="text" maxlength="60" placeholder="Room Subtitle">
+          <input id="hsr-user-name" class="hsr-settings-input" type="text" maxlength="24" placeholder="User Name">
+        </div>
+        <div class="hsr-settings-hint">Changes are saved automatically.</div>
       </div>
     `;
 
@@ -718,7 +783,7 @@
       processMessages(true);
     });
 
-    buildOptionGroup("hsr-avatar-options", [
+    buildOptionGroup("hsr-assistant-avatar-options", [
       ["march7", "March7"],
       ["acheron", "Acheron"],
       ["asta", "Asta"],
@@ -729,6 +794,53 @@
       saveConfig();
       refreshHeader();
       syncSettingsPanel();
+      processMessages(true);
+    });
+
+    buildOptionGroup("hsr-user-avatar-options", [
+      ["stelle", "Stelle"],
+      ["march7", "March7"],
+      ["acheron", "Acheron"],
+      ["asta", "Asta"],
+      ["castorice", "Castorice"]
+    ], (value) => {
+      CONFIG.userAvatarKey = value;
+      saveConfig();
+      syncSettingsPanel();
+      processMessages(true);
+    });
+
+    buildOptionGroup("hsr-layout-options", [
+      ["default", "Default"],
+      ["compact", "Compact"]
+    ], (value) => {
+      CONFIG.layoutMode = value;
+      saveConfig();
+      applyCss();
+      refreshHeader();
+      syncSettingsPanel();
+      processMessages(true);
+    });
+
+    const titleInput = panel.querySelector("#hsr-room-title");
+    const subtitleInput = panel.querySelector("#hsr-room-subtitle");
+    const userNameInput = panel.querySelector("#hsr-user-name");
+
+    titleInput.addEventListener("input", () => {
+      CONFIG.headerTitle = titleInput.value || DEFAULT_CONFIG.headerTitle;
+      saveConfig();
+      refreshHeader();
+    });
+
+    subtitleInput.addEventListener("input", () => {
+      CONFIG.headerSubtitle = subtitleInput.value || DEFAULT_CONFIG.headerSubtitle;
+      saveConfig();
+      refreshHeader();
+    });
+
+    userNameInput.addEventListener("input", () => {
+      CONFIG.userName = userNameInput.value || DEFAULT_CONFIG.userName;
+      saveConfig();
       processMessages(true);
     });
 
@@ -762,7 +874,18 @@
     markOptionActive("hsr-character-theme-options", CONFIG.characterThemeMode);
     markOptionActive("hsr-theme-options", CONFIG.theme);
     markOptionActive("hsr-sticker-options", CONFIG.stickerMode);
-    markOptionActive("hsr-avatar-options", CONFIG.assistantAvatarKey);
+    markOptionActive("hsr-assistant-avatar-options", CONFIG.assistantAvatarKey);
+    markOptionActive("hsr-user-avatar-options", CONFIG.userAvatarKey);
+    markOptionActive("hsr-layout-options", CONFIG.layoutMode);
+
+    const panel = document.getElementById("hsr-settings-panel");
+    if (!panel) return;
+    const titleInput = panel.querySelector("#hsr-room-title");
+    const subtitleInput = panel.querySelector("#hsr-room-subtitle");
+    const userNameInput = panel.querySelector("#hsr-user-name");
+    if (titleInput) titleInput.value = CONFIG.headerTitle || "";
+    if (subtitleInput) subtitleInput.value = CONFIG.headerSubtitle || "";
+    if (userNameInput) userNameInput.value = CONFIG.userName || "";
   }
 
   function markOptionActive(groupId, activeValue) {
