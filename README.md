@@ -1,6 +1,6 @@
 # HSRGUI Mobile
 
-![version](https://img.shields.io/badge/latest-0.8.3-blue)
+![version](https://img.shields.io/badge/latest-0.9.0-blue)
 ![platform](https://img.shields.io/badge/platform-mobile-green)
 ![userscript](https://img.shields.io/badge/userscript-Tampermonkey-orange)
 
@@ -49,7 +49,7 @@ Open Dashboard and Go to Utilities Tap
 
 ## Latest Version
 
-**Current latest version: `0.8.3`**
+**Current latest version: `0.9.0`**
 
 Stable public release for the current asset system and mobile UI build.
 
@@ -66,7 +66,7 @@ This mobile version was created with permission and encouragement from the origi
 ---
 ## Beta Testing
 
-HSRGUI Mobile is currently in **beta testing (v0.8.3)**.
+HSRGUI Mobile is currently in **beta testing (v0.9.0)**.
 
 Feedback and bug reports are welcome.
 Please open an issue on GitHub.
@@ -78,17 +78,11 @@ Please open an issue on GitHub.
 |------|------|
 | 0.5.2 | First public mobile build |
 | 0.8.3 | Emotion sticker system + theme switcher |
-
+| 0.9.0 | quick settings panel sticker mode selection inside settings |
 
 ---
 
 ## Roadmap
-
-### 0.9
-- Settings panel
-- Character selection
-- Sticker ON/OFF
-- Theme memory save
 
 ### 1.0
 - Stable release
